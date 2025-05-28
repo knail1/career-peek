@@ -4,15 +4,7 @@
 
 ## 📋 Overview
 
-Career Peek is a tool designed to help users navigate their career paths, explore job opportunities, and gain insights into different professions. Whether you're a student deciding on a career path, a professional looking to switch fields, or someone curious about what different jobs entail, Career Peek provides valuable information to guide your decisions.
-
-## ✨ Features
-
-- **Career Exploration**: Discover various career paths based on your interests and skills
-- **Job Market Insights**: Get up-to-date information on job market trends
-- **Skill Assessment**: Identify skills needed for specific careers
-- **Career Path Visualization**: See potential career progression paths
-- **Personalized Recommendations**: Receive tailored career suggestions
+Career Peek is an application designed for managers and HR professionals to analyze an employee's career history on LinkedIn. By leveraging the LinkedIn API, it collects and stores information in a stateful database to provide insights into an individual's career progression, job history, responsibilities, and LinkedIn activities. This tool helps managers better understand their team members' professional backgrounds, skills, and tendencies, enabling more informed decisions about team composition, professional development, and role assignments.
 
 ## 🚀 Getting Started
 
@@ -20,6 +12,7 @@ Career Peek is a tool designed to help users navigate their career paths, explor
 
 - Python 3.8 or higher
 - pip (Python package installer)
+- LinkedIn API credentials (OAuth 2.0)
 
 ### Installation
 
@@ -32,13 +25,35 @@ cd career-peek
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Configure LinkedIn API credentials
+cp .env.example .env
+# Edit .env with your LinkedIn API credentials
 ```
 
 ## 🔍 Usage
 
 ```python
-# Example code will be added as the project develops
+# Import the Career Peek library
+from career_peek import CareerAnalyzer
+
+# Initialize the analyzer with your LinkedIn API credentials
+analyzer = CareerAnalyzer()
+
+# Analyze a team member's profile by LinkedIn URL or ID
+profile_data = analyzer.analyze_profile("https://www.linkedin.com/in/employee-name")
+
+# Get career progression insights
+career_path = analyzer.get_career_progression(profile_data)
+
+# Generate a report for management review
+report = analyzer.generate_report(profile_data, include_skills=True, include_recommendations=True)
+
+# Save the report
+analyzer.save_report(report, "employee_name_career_analysis.pdf")
 ```
+
+Note: This is example code. The actual implementation will be available as the project develops.
 
 ## 🛠️ Development
 
@@ -59,40 +74,55 @@ career-peek/
 
 ## 📝 Meta-work: How I Built the Planning Docs
 
-The planning process for Career Peek involved several key steps to ensure a well-structured and purposeful application:
+The development of Career Peek followed a structured approach using AI assistance to create comprehensive planning documentation. Here's the exact process I used:
 
-### Initial Concept Development
+### Initial Concept Development with OpenAI
 
-The project began with brainstorming sessions to identify the core problem: many people struggle to find clear, actionable information about potential career paths. I mapped out user personas and their needs, which helped shape the application's features and focus.
+I started by feeding this prompt to OpenAI to develop the initial concept:
 
-### Research and Data Collection
+```
+We are going to create an application for finding out someone's career history on LinkedIn by pulling the LinkedIn API and collecting that information and storing it in a stateful database in the backend. We are going to need this to understand the career progression of the individual, their history, their jobs, what they've done in the past in each job if available and the ancillary information on LinkedIn activities to get a general idea of the proclivity of the person.
 
-I conducted extensive research on:
-- Career development frameworks
-- Job market data sources
-- Skill taxonomies and competency models
-- Existing career guidance tools and their limitations
+Ask me one question at a time so we can develop a thorough, step-by-step spec for this idea. Each question should build on my previous answers, and our end goal is to have a detailed specification that I can hand off to a developer. Let's do this iteratively and dig into every relevant detail. Remember, only one question at a time. I prefer yes-no answers, but I'm okay with long-form answers as well.
+```
 
-This research informed both the technical architecture and content strategy for the application.
+This iterative Q&A process resulted in the creation of a detailed specification document called `spec.md`.
 
-### Prompt Engineering
+### Blueprint Development with GPT-4
 
-For the AI-powered components of Career Peek, I developed a series of carefully crafted prompts designed to:
+I then used the specification to create an implementation plan by feeding this prompt to GPT-4:
 
-1. **Extract meaningful insights** from user inputs about their interests, skills, and goals
-2. **Generate personalized career recommendations** based on user profiles and current job market data
-3. **Provide actionable next steps** for users to explore recommended career paths
-4. **Maintain conversational flow** while gathering necessary information
+```
+Using that, Draft a detailed, step-by-step blueprint for building this project. Then, once you have a solid plan, break it down into small, iterative chunks that build on each other. Look at these chunks and then go another round to break it into small steps. Review the results and make sure that the steps are small enough to be implemented safely with strong testing, but big enough to move the project forward. Iterate until you feel that the steps are right sized for this project.
 
-The prompt development process involved:
-- Creating base templates for different interaction types
-- Testing with diverse user scenarios
-- Refining based on output quality and user feedback
-- Implementing guardrails to ensure helpful, accurate responses
+From here you should have the foundation to provide a series of prompts for a code-generation LLM that will implement each step in a test-driven manner. Prioritize best practices, incremental progress, and early testing, ensuring no big jumps in complexity at any stage. Make sure that each prompt builds on the previous prompts, and ends with wiring things together. There should be no hanging or orphaned code that isn't integrated into a previous step.
 
-### Iterative Design Process
+Make sure and separate each prompt section. Use markdown. Each prompt should be tagged as text using code tags. The goal is to output prompts, but context, etc is important as well.
+```
 
-The planning documents evolved through multiple iterations, with each version incorporating feedback from potential users and subject matter experts. This iterative approach helped refine both the technical specifications and the user experience design.
+This generated a detailed implementation plan in `prompt_plan_gpt_o3.md`.
+
+### Alternative Blueprint with Claude Opus
+
+I repeated a similar process with Claude Opus to get an alternative perspective:
+
+```
+From the spec.md attached, draft a detailed, step-by-step blueprint for building this project. Then, once you have a solid plan, break it down into small, iterative chunks that build on each other. Look at these chunks and then go another round to break it into small steps. Review the results and make sure that the steps are small enough to be implemented safely with strong testing, but big enough to move the project forward. Iterate until you feel that the steps are right sized for this project. From here you should have the foundation to provide a series of prompts for a code-generation LLM that will implement each step in a test-driven manner. Prioritize best practices, incremental progress, and early testing, ensuring no big jumps in complexity at any stage. Make sure that each prompt builds on the previous prompts, and ends with wiring things together. There should be no hanging or orphaned code that isn't integrated into a previous step. Make sure and separate each prompt section. Use markdown. Each prompt should be tagged as text using code tags. The goal is to output prompts, but context, etc is important as well.
+```
+
+This created an alternative implementation plan in `prompt_plan_claude_opus.md`.
+
+### Task Management with Todo List
+
+Finally, I created a structured to-do list to track implementation progress:
+
+```
+Can you make a `todo.md` that I can use as a checklist? Make sure it structurally maps with the prompt plan, since you'll start working through the todo list items and would refer to the corresponding prompts to implement the tasks. Be thorough.
+```
+
+This generated a comprehensive checklist in `todo_claude_opus.md` that aligns with the implementation plans, providing a roadmap for development.
+
+With these planning documents in place, I was ready to begin the actual coding process, using the prompts to guide the implementation of each component in a structured, test-driven manner.
 
 ## 🤝 Contributing
 
