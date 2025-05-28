@@ -1,26 +1,86 @@
 # Career Peek
 
+<div align="center">
+
+![Career Peek Logo](https://via.placeholder.com/200x200?text=Career+Peek)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-2.3.3-lightgrey.svg)](https://flask.palletsprojects.com/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
+[![LinkedIn API](https://img.shields.io/badge/LinkedIn-API-0077B5.svg)](https://developer.linkedin.com/)
+
+**Gain valuable insights into career histories through LinkedIn data**
+
+[Features](#-features) • 
+[Installation](#-installation) • 
+[Usage](#-usage) • 
+[Architecture](#-architecture) • 
+[Development](#-development) • 
+[Contributing](#-contributing) • 
+[License](#-license)
+
+</div>
 
 ## 📋 Overview
 
 Career Peek is an application designed for managers and HR professionals to analyze an employee's career history on LinkedIn. By leveraging the LinkedIn API, it collects and stores information in a stateful database to provide insights into an individual's career progression, job history, responsibilities, and LinkedIn activities. This tool helps managers better understand their team members' professional backgrounds, skills, and tendencies, enabling more informed decisions about team composition, professional development, and role assignments.
 
-## 🚀 Getting Started
+## ✨ Features
+
+- **Career Timeline Visualization**: View a chronological representation of an individual's professional journey
+- **Skill Analysis**: Identify and categorize skills based on job descriptions and endorsements
+- **Job Responsibility Extraction**: Extract and analyze key responsibilities from past roles
+- **Activity Insights**: Understand engagement patterns through LinkedIn activity data
+- **Comparative Analysis**: Compare career trajectories across team members or candidates
+- **Data Export**: Export insights in various formats for reporting and presentation
+
+## 🚀 Installation
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- pip (Python package installer)
+- Docker and Docker Compose
+- Git
 - LinkedIn API credentials (OAuth 2.0)
 
-### Installation
+### Using Docker (Recommended)
 
-**TBD**: Installation instructions will be provided as the project is implemented.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/knail1/career-peek.git
+   cd career-peek
+   ```
+
+2. Configure environment variables:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your LinkedIn API credentials and other settings
+   ```
+
+3. Start the application:
+   ```bash
+   docker-compose up -d
+   ```
+
+4. Access the application at http://localhost:3000
+
+### Manual Installation
+
+For detailed instructions on manual installation, please refer to the [SETUP.md](SETUP.md) file.
 
 ## 🔍 Usage
 
-**TBD**: Usage examples will be provided as the project is implemented.
+**Note**: The application is currently under development. Usage examples will be provided as features are implemented.
+
+## 🏗 Architecture
+
+Career Peek follows a modern web application architecture:
+
+- **Frontend**: React-based single-page application
+- **Backend**: Flask RESTful API
+- **Database**: PostgreSQL for data persistence
+- **Authentication**: OAuth 2.0 for LinkedIn API access
+- **Containerization**: Docker for consistent development and deployment
 
 ## 🛠️ Development
 
@@ -28,70 +88,117 @@ Career Peek is an application designed for managers and HR professionals to anal
 
 ```
 career-peek/
-├── LICENSE
-├── README.md
-├── meta_file_for_readme.txt
-├── prompt_plan_claude_opus.md
-├── prompt_plan_gpt_o3.md
-├── spec.md
-└── todo_claude_opus.md
+├── backend/           # Flask API server
+│   ├── app.py         # Application entry point
+│   ├── config.py      # Configuration settings
+│   ├── requirements.txt # Python dependencies
+│   └── tests/         # Backend tests
+├── database/          # Database migrations and seeds
+├── docs/              # Project documentation
+│   ├── meta_file_for_readme.txt  # Original prompts used
+│   ├── prompt_plan_claude_opus.md # Implementation plan from Claude
+│   ├── prompt_plan_gpt_o3.md    # Implementation plan from GPT-4
+│   ├── spec.md                  # Project specifications
+│   └── todo_claude_opus.md      # Implementation checklist
+├── docker-compose.yml # Docker configuration
+├── frontend/          # React frontend (to be implemented)
+├── .env.example       # Example environment variables
+├── LICENSE            # MIT License
+├── README.md          # This file
+└── SETUP.md           # Detailed setup instructions
 ```
 
-### Running Tests
+### Development Workflow
 
-**TBD**: Test instructions will be provided as the project is implemented.
+1. Start the development environment:
+   ```bash
+   docker-compose up -d
+   ```
+
+2. Make changes to the code
+
+3. Run tests:
+   ```bash
+   docker-compose exec api pytest
+   ```
+
+4. Rebuild containers if necessary:
+   ```bash
+   docker-compose build
+   ```
+
+For more detailed development instructions, please refer to the [SETUP.md](SETUP.md) file.
 
 ## 📝 Meta-work: How I Built the Planning Docs
 
-The development of Career Peek followed a structured approach using AI assistance to create comprehensive planning documentation. Here's the exact process I used:
+The development of Career Peek followed a structured approach using AI assistance to create comprehensive planning documentation. This section outlines the process used to develop the project blueprint.
 
-### Initial Concept Development with OpenAI
+### AI-Assisted Planning Process
 
-I started by feeding this prompt to OpenAI to develop the initial concept:
+#### 1. Initial Concept Development with OpenAI
+
+The project began with a clear vision that was refined through an iterative Q&A process with OpenAI. This approach helped transform a high-level concept into a detailed specification:
 
 ```
 We are going to create an application for finding out someone's career history on LinkedIn by pulling the LinkedIn API and collecting that information and storing it in a stateful database in the backend. We are going to need this to understand the career progression of the individual, their history, their jobs, what they've done in the past in each job if available and the ancillary information on LinkedIn activities to get a general idea of the proclivity of the person.
 
-Ask me one question at a time so we can develop a thorough, step-by-step spec for this idea. Each question should build on my previous answers, and our end goal is to have a detailed specification that I can hand off to a developer. Let's do this iteratively and dig into every relevant detail. Remember, only one question at a time. I prefer yes-no answers, but I'm okay with long-form answers as well.
+Ask me one question at a time so we can develop a thorough, step-by-step spec for this idea.
 ```
 
-This iterative Q&A process resulted in the creation of a detailed specification document called `spec.md`.
+This dialogue-based approach allowed for:
+- Clarification of ambiguous requirements
+- Identification of potential challenges
+- Refinement of feature scope
+- Documentation of technical constraints
 
-### Blueprint Development with GPT-4
+The result was a comprehensive `docs/spec.md` document that served as the foundation for all subsequent planning.
 
-I then used the specification to create an implementation plan by feeding this prompt to GPT-4:
+#### 2. Blueprint Development with Multiple AI Models
 
+To ensure a robust implementation plan, the specification was processed through two different AI models:
+
+**GPT-4 Implementation Plan:**
 ```
-Using that, Draft a detailed, step-by-step blueprint for building this project. Then, once you have a solid plan, break it down into small, iterative chunks that build on each other. Look at these chunks and then go another round to break it into small steps. Review the results and make sure that the steps are small enough to be implemented safely with strong testing, but big enough to move the project forward. Iterate until you feel that the steps are right sized for this project.
-
-From here you should have the foundation to provide a series of prompts for a code-generation LLM that will implement each step in a test-driven manner. Prioritize best practices, incremental progress, and early testing, ensuring no big jumps in complexity at any stage. Make sure that each prompt builds on the previous prompts, and ends with wiring things together. There should be no hanging or orphaned code that isn't integrated into a previous step.
-
-Make sure and separate each prompt section. Use markdown. Each prompt should be tagged as text using code tags. The goal is to output prompts, but context, etc is important as well.
-```
-
-This generated a detailed implementation plan in `prompt_plan_gpt_o3.md`.
-
-### Alternative Blueprint with Claude Opus
-
-I repeated a similar process with Claude Opus to get an alternative perspective:
-
-```
-From the spec.md attached, draft a detailed, step-by-step blueprint for building this project. Then, once you have a solid plan, break it down into small, iterative chunks that build on each other. Look at these chunks and then go another round to break it into small steps. Review the results and make sure that the steps are small enough to be implemented safely with strong testing, but big enough to move the project forward. Iterate until you feel that the steps are right sized for this project. From here you should have the foundation to provide a series of prompts for a code-generation LLM that will implement each step in a test-driven manner. Prioritize best practices, incremental progress, and early testing, ensuring no big jumps in complexity at any stage. Make sure that each prompt builds on the previous prompts, and ends with wiring things together. There should be no hanging or orphaned code that isn't integrated into a previous step. Make sure and separate each prompt section. Use markdown. Each prompt should be tagged as text using code tags. The goal is to output prompts, but context, etc is important as well.
+Using that, Draft a detailed, step-by-step blueprint for building this project. Then, once you have a solid plan, break it down into small, iterative chunks that build on each other.
 ```
 
-This created an alternative implementation plan in `prompt_plan_claude_opus.md`.
-
-### Task Management with Todo List
-
-Finally, I created a structured to-do list to track implementation progress:
-
+**Claude Opus Alternative Perspective:**
 ```
-Can you make a `todo.md` that I can use as a checklist? Make sure it structurally maps with the prompt plan, since you'll start working through the todo list items and would refer to the corresponding prompts to implement the tasks. Be thorough.
+From the spec.md attached, draft a detailed, step-by-step blueprint for building this project. Then, once you have a solid plan, break it down into small, iterative chunks that build on each other.
 ```
 
-This generated a comprehensive checklist in `todo_claude_opus.md` that aligns with the implementation plans, providing a roadmap for development.
+This dual-model approach provided:
+- Diverse implementation strategies
+- Identification of potential blind spots
+- Complementary technical perspectives
+- More comprehensive risk assessment
 
-With these planning documents in place, I was ready to begin the actual coding process, using the prompts to guide the implementation of each component in a structured, test-driven manner.
+The resulting documents (`docs/prompt_plan_gpt_o3.md` and `docs/prompt_plan_claude_opus.md`) offered alternative implementation paths, allowing for a more informed development strategy.
+
+#### 3. Structured Task Management
+
+The final planning step involved creating a detailed task list that mapped directly to the implementation plans:
+
+```
+Can you make a `todo.md` that I can use as a checklist? Make sure it structurally maps with the prompt plan, since you'll start working through the todo list items and would refer to the corresponding prompts to implement the tasks.
+```
+
+This produced a comprehensive checklist in `docs/todo_claude_opus.md` that:
+- Breaks down the project into manageable tasks
+- Establishes clear dependencies between components
+- Provides a roadmap for incremental development
+- Enables progress tracking throughout implementation
+
+### Benefits of This Approach
+
+This AI-assisted planning methodology offers several advantages:
+- **Comprehensive Documentation**: Detailed plans before writing any code
+- **Reduced Ambiguity**: Clear specifications minimize misunderstandings
+- **Incremental Development**: Well-defined steps for gradual implementation
+- **Test-Driven Focus**: Testing considerations built into the planning process
+- **Multiple Perspectives**: Diverse viewpoints from different AI models
+
+By leveraging AI for the planning phase, the project benefits from a more thorough and well-considered foundation, potentially reducing rework and ensuring a more cohesive final product.
 
 ## 🤝 Contributing
 
