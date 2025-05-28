@@ -16,44 +16,11 @@ Career Peek is an application designed for managers and HR professionals to anal
 
 ### Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/knail1/career-peek.git
-
-# Navigate to the project directory
-cd career-peek
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure LinkedIn API credentials
-cp .env.example .env
-# Edit .env with your LinkedIn API credentials
-```
+**TBD**: Installation instructions will be provided as the project is implemented.
 
 ## 🔍 Usage
 
-```python
-# Import the Career Peek library
-from career_peek import CareerAnalyzer
-
-# Initialize the analyzer with your LinkedIn API credentials
-analyzer = CareerAnalyzer()
-
-# Analyze a team member's profile by LinkedIn URL or ID
-profile_data = analyzer.analyze_profile("https://www.linkedin.com/in/employee-name")
-
-# Get career progression insights
-career_path = analyzer.get_career_progression(profile_data)
-
-# Generate a report for management review
-report = analyzer.generate_report(profile_data, include_skills=True, include_recommendations=True)
-
-# Save the report
-analyzer.save_report(report, "employee_name_career_analysis.pdf")
-```
-
-Note: This is example code. The actual implementation will be available as the project develops.
+**TBD**: Usage examples will be provided as the project is implemented.
 
 ## 🛠️ Development
 
@@ -63,14 +30,16 @@ Note: This is example code. The actual implementation will be available as the p
 career-peek/
 ├── LICENSE
 ├── README.md
-└── [additional files and directories will be added as the project develops]
+├── meta_file_for_readme.txt
+├── prompt_plan_claude_opus.md
+├── prompt_plan_gpt_o3.md
+├── spec.md
+└── todo_claude_opus.md
 ```
 
 ### Running Tests
 
-```bash
-# Test commands will be added as the project develops
-```
+**TBD**: Test instructions will be provided as the project is implemented.
 
 ## 📝 Meta-work: How I Built the Planning Docs
 
