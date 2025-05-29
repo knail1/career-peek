@@ -1,10 +1,9 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
 import os
 
-# Initialize SQLAlchemy
-db = SQLAlchemy()
+# Import extensions
+from extensions import db, migrate
 
 def create_app(config_name='default'):
     """Application factory function."""
@@ -22,6 +21,10 @@ def create_app(config_name='default'):
     
     # Initialize extensions
     db.init_app(app)
+    migrate.init_app(app, db)
+    
+    # Import models to ensure they are registered with SQLAlchemy
+    from models import Profile, JobHistory, Education, ProfileTag, ProfileVersion
     
     # Register blueprints
     
