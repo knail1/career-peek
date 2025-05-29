@@ -8,10 +8,20 @@ class Config:
     """Base configuration."""
     SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-key-please-change-in-production')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get(
-        'DATABASE_URL',
-        'postgresql://postgres:postgres@db:5432/career_peek'
-    )
+    
+    # Use SQLite for local development and PostgreSQL in Docker
+    if os.environ.get('DOCKER_ENV') == 'true':
+        SQLALCHEMY_DATABASE_URI = os.environ.get(
+            'DATABASE_URL',
+            'postgresql://postgres:postgres@db:5432/career_peek'
+        )
+    else:
+        # Use SQLite for local development
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        SQLALCHEMY_DATABASE_URI = os.environ.get(
+            'DATABASE_URL',
+            f'sqlite:///{os.path.join(basedir, "career_peek_dev.sqlite")}'
+        )
 
 class DevelopmentConfig(Config):
     """Development configuration."""
@@ -20,10 +30,15 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     """Testing configuration."""
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get(
-        'TEST_DATABASE_URL',
-        'postgresql://postgres:postgres@db:5432/career_peek_test'
-    )
+    
+    # Use in-memory SQLite for testing when not in Docker
+    if os.environ.get('DOCKER_ENV') == 'true':
+        SQLALCHEMY_DATABASE_URI = os.environ.get(
+            'TEST_DATABASE_URL',
+            'postgresql://postgres:postgres@db:5432/career_peek_test'
+        )
+    else:
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
 
 class ProductionConfig(Config):
     """Production configuration."""

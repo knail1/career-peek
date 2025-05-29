@@ -4,7 +4,7 @@
 This checklist corresponds directly to the prompts in `prompt_plan_claude_opus.md`. Each section references the prompt number for implementation details.
 
 ## Progress Tracking
-- [ ] Foundation Layer (Steps 1-5) - Step 1 Complete
+- [ ] Foundation Layer (Steps 1-5) - Steps 1-2 Complete
 - [ ] Data Layer (Steps 6-10)
 - [ ] API Layer (Steps 11-15)
 - [ ] Frontend Core (Steps 16-20)
@@ -42,35 +42,35 @@ This checklist corresponds directly to the prompts in `prompt_plan_claude_opus.m
   - [x] Health endpoint responds correctly
 
 ### Step 2: Database Schema and Migrations (Prompt 2)
-- [ ] Install and configure Flask-Migrate
-  - [ ] Add Flask-Migrate to requirements.txt
-  - [ ] Initialize migrations
-  - [ ] Create `models.py` file
-- [ ] Create SQLAlchemy models
-  - [ ] Profile model with all fields
-  - [ ] JobHistory model with relationships
-  - [ ] Education model
-  - [ ] ProfileTag model
-  - [ ] ProfileVersion model for SCD
-- [ ] Write model tests
-  - [ ] Create `test_models.py`
-  - [ ] Test model creation and saving
-  - [ ] Test relationships
-  - [ ] Test timestamp automation
-  - [ ] Test LinkedIn URL validation
-- [ ] Create database migrations
-  - [ ] Generate initial migration
-  - [ ] Add proper constraints
-  - [ ] Add foreign key relationships
-  - [ ] Add indexes for performance
-- [ ] Create database initialization
-  - [ ] Database creation script
-  - [ ] Migration runner
-  - [ ] Docker-compose integration
-- [ ] Verify database setup
-  - [ ] All model tests pass
-  - [ ] Migrations run successfully
-  - [ ] Database accessible from Flask
+- [x] Install and configure Flask-Migrate
+  - [x] Add Flask-Migrate to requirements.txt
+  - [x] Initialize migrations
+  - [x] Create `models.py` file
+- [x] Create SQLAlchemy models
+  - [x] Profile model with all fields
+  - [x] JobHistory model with relationships
+  - [x] Education model
+  - [x] ProfileTag model
+  - [x] ProfileVersion model for SCD
+- [x] Write model tests
+  - [x] Create `test_models.py`
+  - [x] Test model creation and saving
+  - [x] Test relationships
+  - [x] Test timestamp automation
+  - [x] Test LinkedIn URL validation
+- [x] Create database migrations
+  - [x] Generate initial migration
+  - [x] Add proper constraints
+  - [x] Add foreign key relationships
+  - [x] Add indexes for performance
+- [x] Create database initialization
+  - [x] Database creation script
+  - [x] Migration runner
+  - [x] Docker-compose integration
+- [x] Verify database setup
+  - [x] All model tests pass
+  - [x] Migrations run successfully
+  - [x] Database accessible from Flask
 
 ### Step 3: Flask API Skeleton with Enhanced Health Check (Prompt 3)
 - [ ] Restructure Flask with blueprints
