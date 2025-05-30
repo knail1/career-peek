@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Career Peek Logo](https://via.placeholder.com/200x200?text=Career+Peek)
+![Career Peek Logo](images/career-peek.png)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
@@ -391,7 +391,7 @@ Project Link: [https://github.com/knail1/career-peek](https://github.com/knail1/
 
 <div align="center">
   
-  ⭐️ From [knail1](https://github.com/knail1)
+  ⭐️ From [Omer Ansari](https://github.com/knail1)
   
   <p>
     <a href="https://github.com/knail1/career-peek/stargazers">
