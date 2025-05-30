@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Career Peek Logo](https://via.placeholder.com/200x200?text=Career+Peek)
+![Career Peek Logo](images/career-peek.png)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
