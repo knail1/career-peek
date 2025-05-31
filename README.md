@@ -391,7 +391,7 @@ Project Link: [https://github.com/knail1/career-peek](https://github.com/knail1/
 
 <div align="center">
   
-  ⭐️ From [knail1](https://github.com/knail1)
+  ⭐️ From [Omer Ansari](https://github.com/knail1)
   
   <p>
     <a href="https://github.com/knail1/career-peek/stargazers">
