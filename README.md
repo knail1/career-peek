@@ -241,9 +241,16 @@ The project began with a clear vision that was refined through an iterative Q&A 
 ```
 We are going to create an application for finding out someone's career history on LinkedIn by pulling the LinkedIn API and collecting that information and storing it in a stateful database in the backend. We are going to need this to understand the career progression of the individual, their history, their jobs, what they've done in the past in each job if available and the ancillary information on LinkedIn activities to get a general idea of the proclivity of the person.
 
-Ask me one question at a time so we can develop a thorough, step-by-step spec for this idea.
+Ask me one question at a time so we can develop a thorough, step-by-step spec for this idea. Each question should build on my previous answers, and our end goal is to have a detailed specification I can hand off to a developer. Let’s do this iteratively and dig into every relevant detail. Remember, only one question at a time.
+```
+at the end of this brainstorming
+```
+Now that we’ve wrapped up the brainstorming process, can you compile our findings into a comprehensive, developer-ready specification named spec.md? Include all relevant requirements, architecture choices, data handling details, error handling strategies, and a testing plan so a developer can immediately begin implementation.
 ```
 </details>
+
+
+
 
 This dialogue-based approach allowed for:
 
@@ -261,18 +268,20 @@ The result was a comprehensive `docs/spec.md` document that served as the founda
 To ensure a robust implementation plan, the specification was processed through two different AI models:
 
 <details>
-<summary>View prompts for implementation plans</summary>
+<summary>View prompt for implementation plan</summary>
 
-**GPT-4 Implementation Plan:**
-```
-Using that, Draft a detailed, step-by-step blueprint for building this project. Then, once you have a solid plan, break it down into small, iterative chunks that build on each other.
-```
 
-**Claude Opus Alternative Perspective:**
+**Creating a Prompt Plan:** (I attached the prior spec.md to the prompt input)
 ```
-From the spec.md attached, draft a detailed, step-by-step blueprint for building this project. Then, once you have a solid plan, break it down into small, iterative chunks that build on each other.
+Based on the attached spec.md, draft a detailed, step-by-step blueprint for building this project. Then, once you have a solid plan, break it down into small, iterative chunks that build on each other. Look at these chunks and then go another round to break it into small steps. Review the results and make sure that the steps are small enough to be implemented safely with strong testing, but big enough to move the project forward. Iterate until you feel that the steps are right sized for this project.
+
+From here you should have the foundation to provide a series of prompts for a code-generation LLM that will implement each step in a test-driven manner. Prioritize best practices, incremental progress, and early testing, ensuring no big jumps in complexity at any stage. Make sure that each prompt builds on the previous prompts, and ends with wiring things together. There should be no hanging or orphaned code that isn't integrated into a previous step.
+
+Make sure and separate each prompt section. Use markdown. Each prompt should be tagged as text using code tags. The goal is to output prompts, but context, etc is important as well.
 ```
 </details>
+
+> I used Claude Opus 4, and GPT 4o3 and generated two prompt plans.
 
 This dual-model approach provided:
 
@@ -291,7 +300,7 @@ The final planning step involved creating a detailed task list that mapped direc
 <summary>View task list prompt</summary>
 
 ```
-Can you make a `todo.md` that I can use as a checklist? Make sure it structurally maps with the prompt plan, since you'll start working through the todo list items and would refer to the corresponding prompts to implement the tasks.
+Can you make a `todo.md` that I can use as a checklist? Make sure it structurally maps with the prompt plan, since you'll start working through the todo list items and would refer to the corresponding prompts to implement the tasks. Be thorough
 ```
 </details>
 
